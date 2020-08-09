@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @Author 流星紫蝶雨
@@ -26,11 +27,6 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @Value("${WeChat.appId}")
-    private String appId;
-
-    @Value("${WeChat.secret}")
-    private String secret;
 
     @RequestMapping(method = RequestMethod.GET)
     public Result findAll() {
@@ -39,12 +35,8 @@ public class UserController {
 
     @RequestMapping(value = "/authorization", method = RequestMethod.POST)
     public Result authorization(@RequestBody String params) {
-        String weChatCode = JSON.parseObject(params).getString("weChatCode");
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + appId + "&secret=" + secret + "&js_code=" + weChatCode + "&grant_type=authorization_code";
-        String str = WeChatUtil.httpRequest(url, "GET", null);
-        JSONObject jsonObject = JSONObject.parseObject(str);
-        String openid = jsonObject.getString("openid");
-        return new Result(true, StatusCode.OK, "成功调用", openid);
+        Map<String,Object> resultMap = userService.authorization(params);
+        return new Result(true, StatusCode.OK, "成功调用", resultMap);
     }
 
 }

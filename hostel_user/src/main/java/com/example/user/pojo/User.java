@@ -17,7 +17,7 @@ public class User {
     private String province;
     private String city;
     private String language;
-    private java.sql.Timestamp ctime;
+    private String ctime;
     private String mobile;
 
 
@@ -102,11 +102,11 @@ public class User {
     }
 
 
-    public java.sql.Timestamp getCtime() {
+    public String getCtime() {
         return ctime;
     }
 
-    public void setCtime(java.sql.Timestamp ctime) {
+    public void setCtime(String ctime) {
         this.ctime = ctime;
     }
 

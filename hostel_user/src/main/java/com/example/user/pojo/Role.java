@@ -13,6 +13,8 @@ public class Role {
 
     private String role;
 
+    private String remarks;
+
 
     public String getId() {
         return id;
@@ -31,4 +33,11 @@ public class Role {
         this.role = role;
     }
 
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
 }
