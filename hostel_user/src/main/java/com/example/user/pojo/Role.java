@@ -1,14 +1,11 @@
 package com.example.user.pojo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
-@Entity
-@Table(name = "tb_role")
+@TableName(value = "tb_role")
 public class Role {
-
-    @Id
+    @TableId(value = "id")
     private String id;
 
     private String role;

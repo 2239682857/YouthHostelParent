@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: hostel-user
+  ##Datasource config
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://58.87.126.253:3306/yh-user?characterEncoding=UTF8
+    username: hxx
+    password: huanxiangxiang
+#Mybatis-plus
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    refresh: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.user.pojo
+
+##JWT-config
+jwt.config.key: itcast
+jwt.config.ttl: 360000
+##WeChat-config
+WeChat.appId: wx72182d67b4d569e5
+WeChat.secret: ecd2d22d50723171ed202cbea0d29866

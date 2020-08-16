@@ -2,10 +2,10 @@ package com.example.user.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.user.dao.RoleDao;
-import com.example.user.dao.UserDao;
+import com.example.user.mapper.RoleMapper;
+import com.example.user.mapper.IUserMapper;
+import com.example.user.pojo.IUser;
 import com.example.user.pojo.Role;
-import com.example.user.pojo.User;
 import com.example.user.util.WeChatUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,10 +29,10 @@ import java.util.Map;
 public class UserService {
 
     @Resource
-    private UserDao userDao;
+    private IUserMapper userMapper;
 
     @Resource
-    private RoleDao roleDao;
+    private RoleMapper roleMapper;
 
 
     @Value("${WeChat.appId}")
@@ -51,8 +51,8 @@ public class UserService {
      *
      * @return
      */
-    public List<User> findAll() {
-        return userDao.findAll();
+    public List<IUser> findAll() {
+        return userMapper.selectList(null);
     }
 
 
@@ -71,18 +71,18 @@ public class UserService {
         if (jsonObject.containsKey("openid")) {
             resultMap = new HashMap<>();
             String openid = jsonObject.getString("openid");
-            User user = userDao.findByOpenid(openid);
+            IUser user = userMapper.findByOpenid(openid);
             Role role = null;
             if (user == null) {
-                user = new User();
+                user = new IUser();
                 user.setId(idWorker.nextId() + "");
                 user.setOpenid(openid);
                 user.setCtime(simpleDateFormat.format(new Date()));
-                role = roleDao.findByRole("user");
-                userDao.save(user);
-                userDao.bindUserRole(user.getId(), role.getId());
+                role = roleMapper.findByRole("user");
+                userMapper.insert(user);
+                userMapper.bindUserRole(user.getId(), role.getId());
             } else {
-                role = roleDao.findByUserId(user.getId());
+                role = roleMapper.findByUserId(user.getId());
             }
             resultMap.put("role", role.getRole());
             resultMap.put("openId", openid);

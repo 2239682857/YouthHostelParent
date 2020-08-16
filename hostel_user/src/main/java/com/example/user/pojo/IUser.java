@@ -1,13 +1,11 @@
 package com.example.user.pojo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
-@Entity
-@Table(name = "tb_user")
-public class User {
-    @Id
+@TableName(value = "tb_user")
+public class IUser {
+    @TableId(value = "id")
     private String id;
     private String openid;
     private String nickname;
@@ -119,4 +117,20 @@ public class User {
         this.mobile = mobile;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", openid='" + openid + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", avatarurl='" + avatarurl + '\'' +
+                ", gender=" + gender +
+                ", country='" + country + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", language='" + language + '\'' +
+                ", ctime='" + ctime + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
+    }
 }
