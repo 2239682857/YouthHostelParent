@@ -34,3 +34,9 @@ jwt.config.ttl: 360000
 ##WeChat-config
 WeChat.appId: wx72182d67b4d569e5
 WeChat.secret: ecd2d22d50723171ed202cbea0d29866
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8070/eureka
+  instance:
+    prefer-ip-address: true

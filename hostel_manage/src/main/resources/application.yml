@@ -1,0 +1,16 @@
+server:
+  port: 8071
+spring:
+  application:
+    name: hostel-manage
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8070/eureka/
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+    hostel-user: ##用户
+      path: /user/**
+      serviceId: hostel-user

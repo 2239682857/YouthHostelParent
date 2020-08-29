@@ -11,6 +11,7 @@
     <modules>
         <module>hostel_common</module>
         <module>hostel_user</module>
+        <module>hostel_manage</module>
     </modules>
 
     <packaging>pom</packaging>
