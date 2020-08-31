@@ -12,5 +12,5 @@ eureka:
 zuul:
   routes:
     hostel-user: ##用户
-      path: /user/**
+      path: /api-user/**
       serviceId: hostel-user
