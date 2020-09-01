@@ -2,9 +2,18 @@ package com.example.user.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.io.Serializable;
+
+@Data
+@NoArgsConstructor
+@ToString
 @TableName(value = "tb_role")
-public class Role {
+public class Role implements Serializable {
+
     @TableId(value = "id")
     private String id;
 
@@ -13,28 +22,4 @@ public class Role {
     private String remarks;
 
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
 }

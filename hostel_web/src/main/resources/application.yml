@@ -1,16 +1,16 @@
 server:
-  port: 8072
+  port: 8080
 spring:
   application:
     name: hostel-web
 eureka:
   client:
-    service-url:
+    service-url: ##配置中心地址
       defaultZone: http://localhost:8070/eureka
   instance:
     prefer-ip-address: true
 zuul:
-  routes:
+  routes: #配置网关路由
     hostel-user: ##用户
       path: /api-user/**
       serviceId: hostel-user
