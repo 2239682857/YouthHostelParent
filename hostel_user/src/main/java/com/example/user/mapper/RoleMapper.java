@@ -11,6 +11,12 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface RoleMapper extends BaseMapper<Role> {
 
+    /**
+     * 根据权限名称搜索
+     *
+     * @param role
+     * @return
+     */
     Role findByRole(String role);
 
     /**

@@ -2,8 +2,8 @@ package com.example.user.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.user.mapper.RoleMapper;
 import com.example.user.mapper.IUserMapper;
+import com.example.user.mapper.RoleMapper;
 import com.example.user.pojo.IUser;
 import com.example.user.pojo.Role;
 import com.example.user.util.WeChatUtil;
@@ -20,13 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description
  * @Author 流星紫蝶雨
  * @Date 2020/8/7 10:04
  * @Version 1.0
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserService {
 
     @Resource
@@ -69,8 +68,9 @@ public class UserService {
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + appId + "&secret=" + secret + "&js_code=" + weChatCode + "&grant_type=authorization_code";
         String str = WeChatUtil.httpRequest(url, "GET", null);
         JSONObject jsonObject = JSONObject.parseObject(str);
-        if (jsonObject.containsKey("openid")) {
-            resultMap = new HashMap<>();
+        String key = "openid";
+        if (jsonObject.containsKey(key)) {
+            resultMap = new HashMap<>(16);
             String openid = jsonObject.getString("openid");
             IUser user = userMapper.findByOpenid(openid);
             Role role = null;

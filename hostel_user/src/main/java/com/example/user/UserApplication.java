@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Bean;
 import util.IdWorker;
 import util.JwtUtil;
 
+/**
+ * @Author 流星紫蝶雨
+ * @Date 2020/9/2 20:04
+ * @Version 1.0
+ */
 @SpringBootApplication
 @EnableEurekaClient
 @MapperScan("com.example.user.mapper")
@@ -29,7 +34,7 @@ public class UserApplication {
     }
 
     @Bean
-    public PaginationInterceptor paginationInterceptor(){
+    public PaginationInterceptor paginationInterceptor() {
         return new PaginationInterceptor();
     }
 }

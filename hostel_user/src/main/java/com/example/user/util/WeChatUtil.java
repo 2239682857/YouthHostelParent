@@ -8,8 +8,7 @@ import java.io.OutputStream;
 import java.net.URL;
 
 /**
- * 微信小程序工具类
- *
+ * @Description 微信小程序工具类
  * @Author 流星紫蝶雨
  * @Date 2020/8/3
  */
